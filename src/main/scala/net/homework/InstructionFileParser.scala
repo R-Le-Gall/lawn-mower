@@ -4,6 +4,7 @@ import scala.util.parsing.combinator._
 import Direction._
 import Movement._
 import scala.io.Source
+import java.io.FileNotFoundException
 
 class InstructionFileParser extends JavaTokenParsers{
 
@@ -42,10 +43,15 @@ object InstructionExecutor extends InstructionFileParser with App {
                                      s"Could not parse '$instructions': $msg")
 			}
 	}
-	
+	try{
 	val fileContent = Source.fromFile(args(0)).mkString
 
 	val elem = parseInstructions(fileContent)
 	elem .printMowerEndPositions()
+	} catch{
+	  case e: ArrayIndexOutOfBoundsException => println("veuillez indiquez un fichier à utiliser.")
+	  case e: FileNotFoundException => println(s"le fichier '${args(0)}' n'existe pas.")
+	  case e: IllegalArgumentException => println(s"le fichier d'instructions '${args(0)}' n'est pas correctement formé.")
+	}
 	
 }
