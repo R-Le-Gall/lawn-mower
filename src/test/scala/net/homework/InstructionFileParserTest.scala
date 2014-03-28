@@ -97,7 +97,6 @@ AADAADADDA
       Console.withOut(stream2) {  InstructionExecutor.main(Array("LawnMowerInstructions.txt")) }
       val result = stream2.toString() 
         stream2.close()
-        println(result)
         result == """4 8 N
 5 10 S
 8 4 S

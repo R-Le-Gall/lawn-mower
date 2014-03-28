@@ -45,9 +45,7 @@ class LawnTest extends Specification{
       val mostUpperLimit = 5
       val lawn = Lawn(Coordinates(5,mostUpperLimit))
       val given = Coordinates(2,6)
-      println (given)
       val corrected = lawn.keepCoordinateOnTheLawn(given)
-      println(corrected)
       corrected.y == mostUpperLimit &&
       corrected.x == given.x
     }

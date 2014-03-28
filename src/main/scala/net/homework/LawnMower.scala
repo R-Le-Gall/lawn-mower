@@ -19,7 +19,7 @@ case class Position(val coordinates:Coordinates, val direction:Direction.Value){
 										, LEFT -> SOUTH
 										, RIGHT -> NORTH)
 						)
-	def computeNextDirection(mv:Movement.Value):Position={
+	def computeNextPosition(mv:Movement.Value):Position={
 		val finalDirection = directionMapping(direction)(mv)
 		val finalCoordinate = mv match {
 		  case FORWARD => manageForwardMove(finalDirection)
@@ -50,7 +50,7 @@ case class Mower(val startPosition:Position,val lawn:Lawn){
 	  def execInstr(pos:Position,instr:List[Movement.Value]):Position = {
 	    if(instr == Nil)	pos 
 	    else {
-		      val posi = pos.computeNextDirection(instr.head)
+		      val posi = pos.computeNextPosition(instr.head)
 		      val onLawnCoor = lawn.keepCoordinateOnTheLawn(posi.coordinates)
 		      val np = Position(onLawnCoor,posi.direction)
 		      execInstr(np,instr.tail)
