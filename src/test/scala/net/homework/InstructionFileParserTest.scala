@@ -62,4 +62,46 @@ AADAADADDA
                 										,FORWARD))
             ))
   }
+//  "prompt an error message when no file path is given" in  {
+//    val stream = new java.io.ByteArrayOutputStream()
+//      Console.withOut(stream) {  InstructionExecutor.main(Array()) }
+//      val result = stream.toString() 
+//        result == """veuillez indiquez un fichier à utiliser.
+//"""
+//  }
+//  "A parser" should {
+//    "prompt an error message when a wrong file path is given" in  {
+//    val stream = new java.io.ByteArrayOutputStream()
+//      Console.withOut(stream) {  InstructionExecutor.main(Array("noFile")) }
+//      val result = stream.toString() 
+//        stream.close()
+//        result == """le fichier 'noFile' n'existe pas.
+//"""
+//  }
+//  }
+  
+//  "A parser" should {
+//    "prompt an error message when an incorrect file is parsed" in  {
+//    val stream = new java.io.ByteArrayOutputStream()
+//      Console.withOut(stream) {  InstructionExecutor.main(Array("wrongInstruction.txt")) }
+//      val result = stream.toString() 
+//        stream.close()
+//        result == """le fichier d'instructions 'wrongInstruction.txt' n'est pas correctement formé.
+//"""
+//  }
+//  }
+  
+    "A parser" should {
+    "prompt the results" in  {
+    val stream2 = new java.io.ByteArrayOutputStream()
+      Console.withOut(stream2) {  InstructionExecutor.main(Array("LawnMowerInstructions.txt")) }
+      val result = stream2.toString() 
+        stream2.close()
+        println(result)
+        result == """4 8 N
+5 10 S
+8 4 S
+"""
+  }
+  }
 }
